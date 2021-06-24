@@ -1,0 +1,57 @@
+before_script:
+  # 配置环境
+  # - source /home/runner/tmp/blueapps/bin/activate
+  # 查看环境
+  - pwd
+
+stages:
+  - test
+  - distribute
+  - stag
+  - build
+
+test_tox:
+  stage: test
+  script:
+    - tox
+  except:
+    - prod_open
+    - prod_v3
+    - prod_ieod
+    - prod_tencent
+    - prod_clouds
+    - prod_qcloud
+    - temp
+
+# 执行python分发脚本
+test_distribute:
+  stage: distribute
+  script:
+    - sh scripts/distribute/distribute.sh ieod `pwd`
+  only:
+    - master
+
+# 部署测试脚本
+test_ieod:
+  stage: stag
+  script:
+    - sh scripts/deploys/update_and_deploy_app.sh ieod `pwd`
+    - echo "ieod deployed, goto http://apps.open.oa.com/ieod-bkapp-testieod-stag/"
+  only:
+    - prod_v3
+
+test_clouds:
+  stage: stag
+  script:
+    - sh scripts/deploys/update_and_deploy_app.sh clouds `pwd`
+    - echo "clouds deployed, goto http://apps.o.bkclouds.cc/clouds-bkapp-testclouds-stag/"
+  only:
+    - prod_v3
+
+test_tencent:
+  stage: stag
+  script:
+    - sh scripts/deploys/update_and_deploy_app.sh tencent `pwd`
+    - echo "tencent deployed, goto http://apps.o.tencent.com/tencent-bkapp-testtencent-stag/"
+  only:
+    - prod_v3
