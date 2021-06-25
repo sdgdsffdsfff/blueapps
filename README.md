@@ -30,7 +30,7 @@
   
   蓝鲸运维开发交流群：878501914
   
-  <img src="docs/resource/img/QR-Code.png" width="250" hegiht="250" align=center />
+  <img src="docs/resource/img/QR-Code.png" align=center style="zoom:67%;" />
   
   
 
