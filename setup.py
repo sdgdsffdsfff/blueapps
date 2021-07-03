@@ -34,7 +34,7 @@ setup(
     description="development framework for blueking",
     long_description=long_description,
     # The project's main homepage.
-    url="https://git.woa.com/bk-tools/blueapps",
+    url="https://github.com/TencentBlueKing/blueapps",
     # Author details
     author="blueking",
     author_email="blueking@tencent.com",
