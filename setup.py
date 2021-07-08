@@ -33,6 +33,7 @@ setup(
     version=version,
     description="development framework for blueking",
     long_description=long_description,
+    long_description_content_type='text/markdown',
     # The project's main homepage.
     url="https://github.com/TencentBlueKing/blueapps",
     # Author details
