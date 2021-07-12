@@ -11,17 +11,19 @@ an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express o
 specific language governing permissions and limitations under the License.
 """
 
-VERSION = "3.3.6"
-__version__ = VERSION
 
+class FancyDict(dict):
+    def __getattr__(self, key):
+        try:
+            return self[key]
+        except KeyError as k:
+            raise AttributeError(k)
 
-RUN_VER = ""
+    def __setattr__(self, key, value):
+        self[key] = value
 
-
-def get_run_ver():
-    from django.conf import settings
-
-    try:
-        return settings.RUN_VER
-    except AttributeError:
-        return RUN_VER
+    def __delattr__(self, key):
+        try:
+            del self[key]
+        except KeyError as k:
+            raise AttributeError(k)

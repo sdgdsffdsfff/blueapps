@@ -11,17 +11,17 @@ an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express o
 specific language governing permissions and limitations under the License.
 """
 
-VERSION = "3.3.6"
-__version__ = VERSION
+from django.core.management.base import BaseCommand
+from django.core.cache import caches
 
 
-RUN_VER = ""
+from blueapps.account.conf import APIGW_CACHE_KEY
+
+cache = caches["login_db"]
 
 
-def get_run_ver():
-    from django.conf import settings
+class Command(BaseCommand):
 
-    try:
-        return settings.RUN_VER
-    except AttributeError:
-        return RUN_VER
+    def handle(self, **options):
+        cache.delete(APIGW_CACHE_KEY)
+        print("[APIGW] clean public key cache SUCCESS!")

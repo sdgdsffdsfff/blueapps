@@ -10,18 +10,3 @@ Unless required by applicable law or agreed to in writing, software distributed 
 an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
 specific language governing permissions and limitations under the License.
 """
-
-VERSION = "3.3.6"
-__version__ = VERSION
-
-
-RUN_VER = ""
-
-
-def get_run_ver():
-    from django.conf import settings
-
-    try:
-        return settings.RUN_VER
-    except AttributeError:
-        return RUN_VER

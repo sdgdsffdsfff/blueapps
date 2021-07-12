@@ -60,6 +60,11 @@ setup(
         "python-json-logger==0.1.7",
         "whitenoise==3.3.0",
         "six==1.11.0",
+
+        # jwt
+        "pycrypto==2.6.1",
+        "PyJWT==1.7.1",
+        "cryptography==2.7",
     ],
     zip_safe=False,
     # To provide executable scripts, use entry points in preference to the
